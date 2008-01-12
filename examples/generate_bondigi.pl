@@ -3,7 +3,7 @@
 # Generate BonDigi(tm) sequence of words
 # until a given number
 #
-# $Id: $
+# $Id$
 
 use strict;
 use warnings;
