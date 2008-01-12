@@ -1,4 +1,4 @@
-# $Id $
+# $Id$
 
 # Unit test
 use Test::Games::BonDigi;
