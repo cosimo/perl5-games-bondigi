@@ -8,8 +8,6 @@ use base qw(Test::Class);
 use Test::More;
 use Games::BonDigi;
 
-our $VERSION = '0.01';
-
 sub iterator_default : Test(12)
 {
 
