@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 package Test::Games::BonDigi;
 
