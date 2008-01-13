@@ -8,15 +8,18 @@ use base qw(Test::Class);
 use Test::More;
 use Games::BonDigi;
 
-sub iterator_default : Test(12)
+our $VERSION = '0.02';
+
+sub iterator_default : Test(114)
 {
 
     my $obj = Games::BonDigi->new();
     isa_ok($obj, 'Games::BonDigi', 'class constructor');
 
+    can_ok($obj, 'sequence');
     my $iter = $obj->sequence();
     ok(ref $iter eq 'CODE', 'Iterator with object');
-    
+
     my $iter2 = Games::BonDigi->sequence();
     ok(ref $iter2 eq 'CODE', 'Iterator with class');
 
@@ -34,6 +37,16 @@ sub iterator_default : Test(12)
     is($iter->(), 'bon',  'Payload: "bon" again');
     is($iter->(), 'digi', 'Payload: "digi"');
     is($iter->(), 'digi', 'Payload: "digi" again');
+
+    # Restart
+    is($iter->(), 'bon',  'Restart of sequence: "bon"');
+
+    # Sequence must be uninterrupted
+    my $words_re = qr/bon|digi/;
+    for(1 .. 100)
+    {
+        like($iter->(), $words_re, 'next ' . $_ . ' word is correct');
+    }
 
     return;
 }
@@ -123,6 +136,23 @@ Uses Test::Class framework.
 =head1 DEDICATION
 
 To Q&A Departments in all the planet.
+
+=head1 METHODS
+
+=over
+
+=item C<iterator_default()>
+
+Tests iterator behaviour in default case, when no parameters
+are passed to the C<sequence()> method.
+
+=item C<iterator_custom()>
+
+Tests customized iterator behaviour, when you pass your parameters to
+the C<sequence()> method. Check out C<Games::BonDigi> class
+documentation for the C<sequence()> method.
+
+=back
 
 =head1 AUTHOR
 
