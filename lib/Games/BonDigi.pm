@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use Carp qw(croak);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use constant HEADER      => 0;
 use constant PAYLOAD     => 1;
@@ -100,7 +100,8 @@ sub sequence
 
             # Check for sequence termination.
             # We don't want to generate more than `$end' repetitions
-            if($repeats[PAYLOAD][REPEAT_WORD] > $end)
+            # If $end == 0, sequence is unterminated
+            if($end > 0 && $repeats[PAYLOAD][REPEAT_WORD] > $end)
             {
                 return undef;
             }
