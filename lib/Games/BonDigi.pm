@@ -66,10 +66,7 @@ sub sequence
     #
     # Define static vars for the iterator sub
     #
-    my $rep  =
-    my $word =
-    my $i    =
-    my $seq  = 0;
+    my $rep = my $word = my $i = my $seq = 0;
 
     my $iterator = sub
     {
@@ -85,8 +82,7 @@ sub sequence
                 $word++;
             }
             $seq++;
-            $i = 0;
-            $word = 0;
+            $i = $word = 0;
         }
 
         # Reinitialize sequence and restart 
